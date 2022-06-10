@@ -1,26 +1,22 @@
-# PostHog Plugin Starter Kit
+# posthog-url-normalizer-plugin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-This is a PostHog plugin template.
+A PostHog plugin to normalize the format of urls in your application allowing you to more easily compare them in insights.
 
-The existing sample code adds property `"greeting"` to every event with a configurable value (default: `"Hello world!"`).  
-But that is just to help you get started! To make it your own:
-- [ ] Add your code to `index.js`.
-- [ ] Add your metadata and configuration schema to `plugin.json`.
-- [ ] Search for `<TODO:`, make sure none are left!
-- [ ] Optional: Add a `logo.png` file to give this plugin its own logo.
-- [ ] Create a README.MD for your plugin which follows [our documentation guidelines](https://posthog.com/docs/plugins/build). 
+Normalize the format of urls in your application allowing you to more easily compare them in insights. The normalized url is stored in a new property called `normalized_current_url`. By default this converts all urls to lowercase and strips the trailing slash.
 
-If you're looking for inspiration, here are a few exemplary plugins:
+Support PostHog and give it a try today. It's the best analytics platform for startups I've found. You won't regret it!
 
-1. [Hello World](https://github.com/PostHog/helloworldplugin) – basic event processing, with tests
-1. [S3 Export](https://github.com/PostHog/s3-export-plugin) – event export using the AWS SDK, with TypeScript
-1. [GeoIP](https://github.com/PostHog/posthog-plugin-geoip) – advanced event processing using the GeoIP feature, with tests, formatting, linting, TypeScript, and GitHub Actions CI
-1. [PagerDuty](https://github.com/PostHog/posthog-pagerduty-plugin) – periodic job using external HTTP API access
+## Developing Locally
 
-To get up to speed with the environment of plugins, check out [our Plugins overview in PostHog Docs](https://posthog.com/docs/plugins/build/overview).  
-For a crash course, read [the Plugins tutorial in PostHog Docs](https://posthog.com/docs/plugins/build/tutorial).
+To develop this plugin locally, you'll need to clone it and then run specs. Please make sure you've got Node and Yarn installed. Pull requests welcome!
+
+git clone https://github.com/MarkBennett/posthog-url-normalizer-plugin.git
+yarn install
+yarn test --watch
+
+From there, edit away and enjoy!
 
 ## Installation
 
@@ -29,16 +25,14 @@ For a crash course, read [the Plugins tutorial in PostHog Docs](https://posthog.
 1. Head to the Advanced tab.
 1. "Install from GitHub, GitLab or npm" using this repository's URL.
 
-## Submitting your plugin to PostHog
+## Roadmap
 
-When you're done, you can submit your plugin to our integration library so that it can be used by other users, including those on PostHog Cloud. 
+See the GitHub Project for a roadmap.
 
-To submit your plugin, [email your plugin GitHub URL to hey@posthog.com](mailto:hey@posthog.com?subject=Submit%20Plugin%20to%20Repository&body=Plugin%20GitHub%20link%3A)
+## Contributing
 
-Once we get your email, we'll review the plugin to ensure it's secure, performant, and adheres to best practices. Then, we add it to our official repository and make it available for everyone to use!
+Contributions of code, issues, reviews and documentation are welcome. This is my first plugin so please be patient with me.
 
-## Questions?
+## Acknoledgements
 
-### [Join our Slack community.](https://join.slack.com/t/posthogusers/shared_invite/enQtOTY0MzU5NjAwMDY3LTc2MWQ0OTZlNjhkODk3ZDI3NDVjMDE1YjgxY2I4ZjI4MzJhZmVmNjJkN2NmMGJmMzc2N2U3Yjc3ZjI5NGFlZDQ)
-
-We're here to help you with anything PostHog!
+Thanks to @Twixes and @marcushyett-ph for their help getting this plugin up and running, along with the awesome @posthog community!
