@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@posthog/plugin-scaffold": "^1.0.4",
+    "jest": "^28.1.1"
+  }
+}
