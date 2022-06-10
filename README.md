@@ -4,7 +4,7 @@
 
 A PostHog plugin to normalize the format of urls in your application allowing you to more easily compare them in insights.
 
-Normalize the format of urls in your application allowing you to more easily compare them in insights. The normalized url is stored in a new property called `normalized_current_url`. By default this converts all urls to lowercase and strips the trailing slash.
+Normalize the format of urls in your application allowing you to more easily compare them in insights. By default, this converts all urls to lowercase and strips the trailing slash, overrighting the old `current_url` value.
 
 Support PostHog and give it a try today. It's the best analytics platform for startups I've found. You won't regret it!
 
