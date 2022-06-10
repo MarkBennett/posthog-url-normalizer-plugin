@@ -1,18 +1,18 @@
 {
-    "name": "<TODO: your plugin name>",
-    "url": "<TODO: Your Plugin URL here>",
-    "description": "<TODO: Your Plugin description here>",
+    "name": "posthog-url-normalizer-plugin",
+    "url": "https://github.com/MarkBennett/posthog-url-normalizer-plugin",
+    "description": "A PostHog plugin to normalize the format of urls in your application allowing you to more easily compare them in insights.",
     "main": "index.js",
     "posthogVersion": ">= 1.25.0",
     "config": [
         {
-            "markdown": "<TODO: your plugin config, remove if none>"
+            "markdown": "Normalize the format of urls in your application allowing you to more easily compare them in insights. The normalized url is stored in a new property called `normalized_current_url`. By default this converts all urls to lowercase and strips the trailing slash."
         },
         {
-            "key": "greeting",
-            "name": "What greeting would you like to use?",
+            "key": "new_property_name",
+            "name": "What should the property containing the normalized url be called?",
             "type": "string",
-            "default": "Hello World!",
+            "default": "normalized_current_url",
             "required": false
         }
     ]
