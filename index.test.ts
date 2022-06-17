@@ -38,7 +38,21 @@ describe("processEvent", () => {
       "http://www.google.com"
     );
   });
-  it.todo("should convert the current_url to lowercase");
+
+  it("should convert the current_url to lowercase", async () => {
+    const sourceEvent = buildPageViewEvent(
+      "http://www.GoOGle.com/WhatAreYouThinking"
+    );
+
+    const processedEvent = await processEvent(sourceEvent, getMeta());
+
+    console.log("processedEvent = ", processedEvent);
+
+    expect(processedEvent?.properties?.current_url).toEqual(
+      "http://www.google.com/whatareyouthinking"
+    );
+  });
+
   it.todo("should remove the trailing slash from the current_url");
   it.todo("should preserve trailing id anchors");
   it.todo("shouldn't modify events that don't have a current_url set");
