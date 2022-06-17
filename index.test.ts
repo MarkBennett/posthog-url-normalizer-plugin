@@ -73,6 +73,8 @@ describe("processEvent", () => {
     );
   });
 
+  it.todo("should preserve trailing anchors but drop trailing slashes");
+
   it.todo("shouldn't modify events that don't have a current_url set");
 
   // TODO: Determine the PostHog convention for handling errors in a plugin
