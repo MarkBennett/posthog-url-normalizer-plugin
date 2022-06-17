@@ -32,8 +32,6 @@ describe("processEvent", () => {
 
     const processedEvent = await processEvent(sourceEvent, getMeta());
 
-    console.log("processedEvent = ", processedEvent);
-
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com"
     );
@@ -46,14 +44,23 @@ describe("processEvent", () => {
 
     const processedEvent = await processEvent(sourceEvent, getMeta());
 
-    console.log("processedEvent = ", processedEvent);
-
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com/whatareyouthinking"
     );
   });
 
-  it.todo("should remove the trailing slash from the current_url");
+  it("should remove the trailing slash from the current_url", async () => {
+    const sourceEvent = buildPageViewEvent(
+      "http://www.google.com/this_is_a_test/"
+    );
+
+    const processedEvent = await processEvent(sourceEvent, getMeta());
+
+    expect(processedEvent?.properties?.current_url).toEqual(
+      "http://www.google.com/this_is_a_test"
+    );
+  });
+
   it.todo("should preserve trailing id anchors");
   it.todo("shouldn't modify events that don't have a current_url set");
 });
