@@ -22,6 +22,21 @@ function buildPageViewEvent(current_url: string): PluginEvent {
   return event;
 }
 
+function buildEventWithoutCurrentUrl(): PluginEvent {
+  const event: PluginEvent = {
+    properties: {},
+    distinct_id: "distinct_id",
+    ip: "1.2.3.4",
+    site_url: "test.com",
+    team_id: 0,
+    now: "2022-06-17T20:21:31.778000+00:00",
+    event: "$identify",
+    uuid: "01817354-06bb-0000-d31c-2c4eed374100",
+  };
+
+  return event;
+}
+
 function getMeta(): PluginMeta<PluginInput> {
   return {} as unknown as PluginMeta<PluginInput>;
 }
@@ -75,7 +90,15 @@ describe("processEvent", () => {
 
   it.todo("should preserve trailing anchors but drop trailing slashes");
 
-  it.todo("shouldn't modify events that don't have a current_url set");
+  it("shouldn't modify events that don't have a current_url set", () => {
+    const sourceEvent = buildEventWithoutCurrentUrl();
+
+    const processedEvent = processEvent(sourceEvent, getMeta());
+
+    expect(processedEvent).toEqual(sourceEvent);
+    expect(processedEvent?.properties).toEqual(sourceEvent.properties);
+    expect(processedEvent?.properties?.current_url).toBeUndefined();
+  });
 
   // TODO: Determine the PostHog convention for handling errors in a plugin
   it.todo("should raise an error if the current_url is an invalid url");
