@@ -63,4 +63,7 @@ describe("processEvent", () => {
 
   it.todo("should preserve trailing id anchors");
   it.todo("shouldn't modify events that don't have a current_url set");
+
+  // TODO: Determine the PostHog convention for handling errors in a plugin
+  it.todo("should raise an error if the current_url is an invalid url");
 });
