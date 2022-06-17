@@ -61,7 +61,18 @@ describe("processEvent", () => {
     );
   });
 
-  it.todo("should preserve trailing id anchors");
+  it("should preserve trailing id anchors", () => {
+    const sourceEvent = buildPageViewEvent(
+      "http://www.google.com/this_is_a_test/#id_anchor"
+    );
+
+    const processedEvent = processEvent(sourceEvent, getMeta());
+
+    expect(processedEvent?.properties?.current_url).toEqual(
+      "http://www.google.com/this_is_a_test/#id_anchor"
+    );
+  });
+
   it.todo("shouldn't modify events that don't have a current_url set");
 
   // TODO: Determine the PostHog convention for handling errors in a plugin
