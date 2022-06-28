@@ -76,9 +76,15 @@ describe("processEvent", () => {
     );
   });
 
-  it.todo(
-    "should preserve the trailing slash if it's the only character in the path"
-  );
+  it("should preserve the trailing slash if it's the only character in the path", async () => {
+    const sourceEvent = buildPageViewEvent("http://www.google.com/");
+
+    const processedEvent = await processEvent(sourceEvent, getMeta());
+
+    expect(processedEvent?.properties?.current_url).toEqual(
+      "http://www.google.com/"
+    );
+  });
 
   it("should preserve trailing id anchors", () => {
     const sourceEvent = buildPageViewEvent(
