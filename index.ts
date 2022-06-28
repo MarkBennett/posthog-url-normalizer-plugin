@@ -4,8 +4,6 @@ function normalizeUrl(url: string): string {
   const parsedUrl = new URL(url.toLocaleLowerCase());
   parsedUrl.pathname = parsedUrl.pathname.replace(/\/$/, "");
 
-  console.log("parsedUrl", parsedUrl);
-
   return parsedUrl.toString();
 }
 

@@ -43,12 +43,12 @@ function getMeta(): PluginMeta<PluginInput> {
 
 describe("processEvent", () => {
   it("shouldn't change a url that's already lowercase", async () => {
-    const sourceEvent = buildPageViewEvent("http://www.google.com");
+    const sourceEvent = buildPageViewEvent("http://www.google.com/test");
 
     const processedEvent = await processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
-      "http://www.google.com"
+      "http://www.google.com/test"
     );
   });
 
@@ -76,9 +76,13 @@ describe("processEvent", () => {
     );
   });
 
+  it.todo(
+    "should preserve the trailing slash if it's the only character in the path"
+  );
+
   it("should preserve trailing id anchors", () => {
     const sourceEvent = buildPageViewEvent(
-      "http://www.google.com/this_is_a_test/#id_anchor"
+      "http://www.google.com/this_is_a_test#id_anchor"
     );
 
     const processedEvent = processEvent(sourceEvent, getMeta());
