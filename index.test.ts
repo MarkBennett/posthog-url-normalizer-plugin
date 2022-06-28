@@ -42,44 +42,44 @@ function getMeta(): PluginMeta<PluginInput> {
 }
 
 describe("processEvent", () => {
-  it("shouldn't change a url that's already lowercase", async () => {
+  it("shouldn't change a url that's already lowercase", () => {
     const sourceEvent = buildPageViewEvent("http://www.google.com/test");
 
-    const processedEvent = await processEvent(sourceEvent, getMeta());
+    const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com/test"
     );
   });
 
-  it("should convert the current_url to lowercase", async () => {
+  it("should convert the current_url to lowercase", () => {
     const sourceEvent = buildPageViewEvent(
       "http://www.GoOGle.com/WhatAreYouThinking"
     );
 
-    const processedEvent = await processEvent(sourceEvent, getMeta());
+    const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com/whatareyouthinking"
     );
   });
 
-  it("should remove the trailing slash from the current_url", async () => {
+  it("should remove the trailing slash from the current_url", () => {
     const sourceEvent = buildPageViewEvent(
       "http://www.google.com/this_is_a_test/"
     );
 
-    const processedEvent = await processEvent(sourceEvent, getMeta());
+    const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com/this_is_a_test"
     );
   });
 
-  it("should preserve the trailing slash if it's the only character in the path", async () => {
+  it("should preserve the trailing slash if it's the only character in the path", () => {
     const sourceEvent = buildPageViewEvent("http://www.google.com/");
 
-    const processedEvent = await processEvent(sourceEvent, getMeta());
+    const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
       "http://www.google.com/"
