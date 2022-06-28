@@ -98,7 +98,17 @@ describe("processEvent", () => {
     );
   });
 
-  it.todo("should preserve trailing anchors but drop trailing slashes");
+  it("should preserve trailing anchors but drop trailing slashes", () => {
+    const sourceEvent = buildPageViewEvent(
+      "http://www.google.com/this_is_a_test_with_trailing_slash/#id_anchor"
+    );
+
+    const processedEvent = processEvent(sourceEvent, getMeta());
+
+    expect(processedEvent?.properties?.current_url).toEqual(
+      "http://www.google.com/this_is_a_test_with_trailing_slash#id_anchor"
+    );
+  });
 
   it("shouldn't modify events that don't have a current_url set", () => {
     const sourceEvent = buildEventWithoutCurrentUrl();
