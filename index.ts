@@ -1,7 +1,12 @@
 import { PluginEvent, PluginInput, PluginMeta } from "@posthog/plugin-scaffold";
 
 function normalizeUrl(url: string): string {
-  return url.toLowerCase().replace(/\/$/, "");
+  const parsedUrl = new URL(url.toLocaleLowerCase());
+  parsedUrl.pathname = parsedUrl.pathname.replace(/\/$/, "");
+
+  console.log("parsedUrl", parsedUrl);
+
+  return parsedUrl.toString();
 }
 
 export function processEvent(

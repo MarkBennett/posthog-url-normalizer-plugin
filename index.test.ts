@@ -84,7 +84,7 @@ describe("processEvent", () => {
     const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent?.properties?.current_url).toEqual(
-      "http://www.google.com/this_is_a_test/#id_anchor"
+      "http://www.google.com/this_is_a_test#id_anchor"
     );
   });
 
