@@ -120,6 +120,11 @@ describe("processEvent", () => {
     expect(processedEvent?.properties?.current_url).toBeUndefined();
   });
 
-  // TODO: Determine the PostHog convention for handling errors in a plugin
-  it.todo("should raise an error if the current_url is an invalid url");
+  it("should raise an error if the current_url is an invalid url", () => {
+    const sourceEvent = buildPageViewEvent("invalid url");
+
+    expect(() => processEvent(sourceEvent, getMeta())).toThrowError(
+      `Unable to normalize invalid URL: "invalid url"`
+    );
+  });
 });
