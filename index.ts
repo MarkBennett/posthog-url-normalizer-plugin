@@ -19,6 +19,8 @@ export function processEvent(
   if (event?.properties && current_url) {
     const normalized_url = normalizeUrl(current_url);
     event.properties.current_url = normalized_url;
+
+    console.debug(`normalized_url: ${normalized_url}`);
   }
 
   return event;
