@@ -15,10 +15,10 @@ export function processEvent(
   event: PluginEvent,
   meta: PluginMeta<PluginInput>
 ) {
-  const current_url = event?.properties?.current_url;
-  if (event?.properties && current_url) {
-    const normalized_url = normalizeUrl(current_url);
-    event.properties.current_url = normalized_url;
+  const $current_url = event?.properties?.$current_url;
+  if (event?.properties && $current_url) {
+    const normalized_url = normalizeUrl($current_url);
+    event.properties.$current_url = normalized_url;
 
     console.debug(`normalized_url: ${normalized_url}`);
   }

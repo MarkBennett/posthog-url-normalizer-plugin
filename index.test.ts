@@ -4,12 +4,12 @@ import { processEvent } from "./index";
 /**
  * Given a url, construct a page view event.
  *
- * @param current_url The current url of the page view
+ * @param $current_url The current url of the page view
  * @returns A new PostHog page view event
  */
-function buildPageViewEvent(current_url: string): PluginEvent {
+function buildPageViewEvent($current_url: string): PluginEvent {
   const event: PluginEvent = {
-    properties: { current_url },
+    properties: { $current_url },
     distinct_id: "distinct_id",
     ip: "1.2.3.4",
     site_url: "test.com",
@@ -47,7 +47,7 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/test"
     );
   });
@@ -59,7 +59,7 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/whatareyouthinking"
     );
   });
@@ -71,7 +71,7 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/this_is_a_test"
     );
   });
@@ -81,7 +81,7 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/"
     );
   });
@@ -93,7 +93,7 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/this_is_a_test#id_anchor"
     );
   });
@@ -105,22 +105,22 @@ describe("processEvent", () => {
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
-    expect(processedEvent?.properties?.current_url).toEqual(
+    expect(processedEvent?.properties?.$current_url).toEqual(
       "http://www.google.com/this_is_a_test_with_trailing_slash#id_anchor"
     );
   });
 
-  it("shouldn't modify events that don't have a current_url set", () => {
+  it("shouldn't modify events that don't have a $current_url set", () => {
     const sourceEvent = buildEventWithoutCurrentUrl();
 
     const processedEvent = processEvent(sourceEvent, getMeta());
 
     expect(processedEvent).toEqual(sourceEvent);
     expect(processedEvent?.properties).toEqual(sourceEvent.properties);
-    expect(processedEvent?.properties?.current_url).toBeUndefined();
+    expect(processedEvent?.properties?.$current_url).toBeUndefined();
   });
 
-  it("should raise an error if the current_url is an invalid url", () => {
+  it("should raise an error if the $current_url is an invalid url", () => {
     const sourceEvent = buildPageViewEvent("invalid url");
 
     expect(() => processEvent(sourceEvent, getMeta())).toThrowError(
