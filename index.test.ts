@@ -137,7 +137,7 @@ describe("processEvent", () => {
     processEvent(sourceEvent, getMeta());
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      "normalized_url: http://www.google.com/whatareyouthinking"
+      'event.$current_url: "http://www.GoOGle.com/WhatAreYouThinking" normalized to "http://www.google.com/whatareyouthinking"'
     );
   });
 });
