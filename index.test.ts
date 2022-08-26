@@ -127,4 +127,17 @@ describe("processEvent", () => {
       `Unable to normalize invalid URL: "invalid url"`
     );
   });
+
+  it("should log the normalized_url for debugging", () => {
+    const consoleSpy = jest.spyOn(console, "debug");
+
+    const sourceEvent = buildPageViewEvent(
+      "http://www.GoOGle.com/WhatAreYouThinking"
+    );
+    processEvent(sourceEvent, getMeta());
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "normalized_url: http://www.google.com/whatareyouthinking"
+    );
+  });
 });
